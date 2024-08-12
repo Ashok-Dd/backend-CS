@@ -22,6 +22,9 @@ app.post('/signin', async(req, res) => {
      })
     .catch((e)=>console.log(e))
 })
+
+
+
 app.post('/signup', async (req, res) => {
     await db.collection('ast').findOne({ Email: req.body.Email })
     .then((result1) => {
@@ -63,26 +66,18 @@ app.post('/changepassword', async(req, res) => {
             return res.json({ error: 'This email is not in use.' });
         }
     })
-    // .then((result)=>{
-    //     res.json({message:'Password updated'})
-    // })
-    // .catch((e)=>console.log(e))
-    // }
-    // else{
-    //     res.json({ error: 'Passwords do not match.' });
     }
 })
 
 
 
-
-// app.post('/students', async(req, res) => {
-//     await db.collection("ast").find().toArray()
-//     .then((result)=>{
-//         res.json(result)
-//      })
-//     .catch((e)=>console.log(e))
-// })
+app.post('/students', async(req, res) => {
+    await db.collection("ast").find().toArray()
+    .then((result)=>{
+        res.send(result)
+    })
+    .catch((e)=>console.log(e))
+})
 
 
 
